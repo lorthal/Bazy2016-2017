@@ -1,0 +1,30 @@
+Wymagania:
+- Selecty, Remove, Update i inne obudowane 
+  w procedury.
+Dodatkowo:
+- realizacja operacji dzielenia
+- zainstalowanie implementacji zapytañ rozmytych
+Sprawozdanie:
+Schemat bazy danych, za³o¿enia i funkcjonalnoœci,
+komentarze do wyzwalaczy/funkcji.
+
+W bazie:
+* Dodawanie, usuwanie, edycja wartoœci w tabelach
+* Klucze nie edytowane, autogenerowane w bazie
+* Przypisanie Zajecia/Zawody do Osoby
+* Przypisanie Osrodek do ObiektSportowy
+
+-- Allow Nulls:
+- dataZwrotu w WypozyczenieSprzet
+- nrZawodow, nrZajec w Osoby
+- nrOsrodka w ObiektSportowy
+
+Interfejs:
+* Tworz¹c wpis do WynajeciaObiektu, trzeba
+przypisaæ od razu Osoby i ObiektSportowy
+* Tworz¹c wpis do WypozyczenieSprzetu, trzeba
+przypisaæ od razu Osoby i Sprzet
+* Tworz¹c wpis do Sprzet, trzeba przypisaæ od 
+razu do ObiektSportowy
+* Tworz¹c wpis do Zajecia/Zawody, trzeba od razu
+przypisaæ ObiektSportowy
