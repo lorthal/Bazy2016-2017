@@ -113,11 +113,38 @@ begin
 	end
 end
 go
+
 -- Przyk³ady u¿ycia Procedury 2
-exec proc2 '2017-04-12 09:00', '2017-04-12 10:00', 1 
+--exec proc2 '2017-04-12 09:00', '2017-04-12 10:00', 1 
 
-exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 1, @nrOsoby = 10, @koszt = 10.00
+--exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 1, @nrOsoby = 10, @koszt = 10.00
 
-exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 25, @nrOsoby = 10, @koszt = 10.00
+--exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 25, @nrOsoby = 10, @koszt = 10.00
 
-exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 1, @nrOsoby = 49, @koszt = 10.00
+--exec proc2 @dataOd = '2017-04-12 09:00', @dataDo ='2017-04-12 10:00',  @nrObiektu = 1, @nrOsoby = 49, @koszt = 10.00
+
+
+-- Procedura 3
+-- Wypozyczenia sprzêtu starsze ni¿ podana iloœc godzin
+if exists(select 1 from sys.objects where type = 'P' and name = 'proc3')
+	drop procedure proc3
+go
+create procedure proc3 @ileGodzin int = 5
+as
+begin
+	declare @ile int
+	set @ile = (select count(*) from WypozyczenieSprzetu where datediff(hour, dataZwrotu, getdate()) > @ileGodzin)
+
+	if @ile > 0
+	begin
+		select nrSprzetu from WypozyczenieSprzetu where datediff(hour, dataZwrotu, getdate()) > @ileGodzin
+	end
+	else 
+	begin
+		print 'Nie ma wypo¿yczeñ sprzêtu starszych ni¿ ' + cast(@ileGodzin as varchar) + ' godzin'
+	end
+end
+go
+
+-- Przyk³ady u¿ycia Procedury 3
+--exec proc3 1
