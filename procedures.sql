@@ -63,3 +63,7 @@ begin
 		end
 	end
 end
+go
+
+-- Przyk³ad u¿ycia Procedury 1
+exec proc1 @nrOsoby = 1, @nazwaZawodow = 'Turniej siatkówki' 
